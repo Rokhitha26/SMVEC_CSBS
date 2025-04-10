@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
-import dao.techShopService;
-import dao.techShopServiceImpl;
+import dao.transportManagementService;
+import dao.transportManagementServiceImpl;
 import entity.Bookings;
 import entity.Vehicles;
 
@@ -13,19 +13,19 @@ public class main {
 
     public static void main(String[] args) throws SQLException, IOException {
         Scanner get = new Scanner(System.in);
-        techShopService service = new techShopServiceImpl();
+        transportManagementService service = new transportManagementServiceImpl();
 
         int userType = 0;
         int userID = 0;
-        int driverID = 0;
+        
 
         do {
-            System.out.println("-----Transport Management-----");
+            System.out.println("\t-----Transport Management-----");
             System.out.println();
-            System.out.println("1. Passenger");
-            System.out.println("2. Admin");
-            System.out.println("3. Driver");
-            System.out.println("4. Exit Transport System");
+            System.out.println("\t1. Passenger");
+            System.out.println("\t2. Admin");
+            System.out.println("\t3. Driver");
+            System.out.println("\t4. Exit Transport System");
             System.out.println();
             System.out.print("Enter your Choice: ");
             userType = get.nextInt();
@@ -36,9 +36,9 @@ public class main {
                     int passengerMenuChoice = 0;
                     boolean isLoggedIn = false;
                     do {
-                        System.out.println("-----Passenger Dashboard-----");
-                        System.out.println("1. Create Account");
-                        System.out.println("2. Login");
+                        System.out.println("\t-----Passenger Dashboard-----");
+                        System.out.println("\t1. Create Account");
+                        System.out.println("\t2. Login");
                         System.out.print("Enter your choice: ");
                         passengerMenuChoice = get.nextInt();
                         get.nextLine();
@@ -54,22 +54,22 @@ public class main {
                                     isLoggedIn = true;
                                    
                                 } else {
-                                    System.out.println("Login failed. Please try again.");
+                                    System.out.println("\tLogin failed. Please try again.");
                                 }
                                 break;
                             default:
-                                System.out.println("Invalid choice. Please try again.");
+                                System.out.println("\tInvalid choice. Please try again.");
                         }
                     } while (!isLoggedIn);
 
                     int userChoice = 0;
                     do {
-                        System.out.println("-----Passenger Dashboard Options-----");
-                        System.out.println("1. View available trips");
-                        System.out.println("2. Book a Trip");
-                        System.out.println("3. Cancel Trip");
-                        System.out.println("4. Get Bookings");
-                        System.out.println("5. Exit Dashboard");
+                        System.out.println("\t-----Passenger Dashboard Options-----");
+                        System.out.println("\t1. View available trips");
+                        System.out.println("\t2. Book a Trip");
+                        System.out.println("\t3. Cancel Trip");
+                        System.out.println("\t4. Get Bookings");
+                        System.out.println("\t5. Exit Dashboard");
                         System.out.print("Enter the option: ");
                         userChoice = get.nextInt();
                         get.nextLine();
@@ -79,13 +79,13 @@ public class main {
                                service.viewAvailableTrips();
                                 break;
                             case 2:
-                            	System.out.println("-----Book a Trip-----");
+                            	System.out.println("\t-----Book a Trip-----");
                             	System.out.println();
                             	service.bookTrip(get,userID);
                                System.out.println();
                                 break;
                             case 3:
-                            	System.out.println("------Cancel Booking------");
+                            	System.out.println("\t------Cancel Booking------");
                                 service.cancelBooking(get, userID);
                                 System.out.println();
                                 break;
@@ -116,17 +116,17 @@ public class main {
 
                 case 2:
                 	int adminMenuChoice=0;
-                    System.out.println("-----Admin Dashboard-----");
+                    System.out.println("\t-----Admin Dashboard-----");
                     System.out.println();
                     do {
-                    	System.out.println("1. Add Vehicle to Transport System.");
-                    	System.out.println("2.Update details of Existing Vehicles");
-                    	System.out.println("3.Delete vehicles from system");
-                    	System.out.println("4.Schedule a trip");
-                    	System.out.println("5.Cancel a trip");
-                    	System.out.println("6.Get bookings by trip ");
-                    	System.out.println("7.Get available drivers");
-                    	System.out.println("8.Exit Transport System");
+                    	System.out.println("\t1. Add Vehicle to Transport System.");
+                    	System.out.println("\t2.Update details of Existing Vehicles");
+                    	System.out.println("\t3.Delete vehicles from system");
+                    	System.out.println("\t4.Schedule a trip");
+                    	System.out.println("\t5.Cancel a trip");
+                    	System.out.println("\t6.Get bookings by trip ");
+                    	System.out.println("\t7.Get available drivers");
+                    	System.out.println("\t8.Exit Transport System");
                     	System.out.println();
                     	System.out.println("Enter your choice: ");
                     	adminMenuChoice=get.nextInt();
@@ -134,13 +134,13 @@ public class main {
                     	
                     	switch(adminMenuChoice) {
                     	case 1:
-                    		System.out.println("-----Add Vehicle-----");
+                    		System.out.println("\t-----Add Vehicle-----");
                     		System.out.print("Enter Model: ");
                     		String model = get.nextLine();
                     		System.out.print("Enter Capacity: ");
                     		double capacity = get.nextDouble();
                     		get.nextLine();
-                    		System.out.print("Enter Type (Truck, Van, Bus): ");
+                    		System.out.print("Enter Type (Truck, Van, Bus,Car): ");
                     		String type = get.nextLine();
                     		System.out.print("Enter Status (Available, On Trip, Maintenance): ");
                     		String status = get.nextLine();
@@ -156,7 +156,7 @@ public class main {
                             System.out.println();
                     		break;
                     	case 2:
-                    		System.out.println("-----Update Vehicle-----");
+                    		System.out.println("\t-----Update Vehicle-----");
                     		System.out.print("Enter Vehicle ID: ");
                     		int vehicleIDU = get.nextInt();
                     		get.nextLine();
@@ -183,12 +183,13 @@ public class main {
                     		break;
                     		
                     	case 3:
-                    		System.out.println("-----Delete Vehicles-----");
-                    		service.deleteVehicle(get); 
+                    		System.out.println("\t-----Delete Vehicles-----");
+                    	service.deleteVehicle(get); 
+                    		//service.deleteVehicle2(get);
                     		System.out.println();
                     		break;
                     	case 4:
-                    		System.out.println("-----Schedule a Trip-----");
+                    		System.out.println("\t-----Schedule a Trip-----");
                     		System.out.println();
                     		
                     		System.out.print("Enter vehicle ID: ");
@@ -209,13 +210,13 @@ public class main {
                     		break;
                     		
                     	case 5:
-                    		System.out.println("-----Cancel a trip-----");
+                    		System.out.println("\t-----Cancel a trip-----");
                     		service.cancelTrip(get);
                     		System.out.println();
                     		break;
                     		
                     	case 6:
-                    		System.out.println("-----Get bookings by trip-----");
+                    		System.out.println("\t-----Get bookings by trip-----");
                     		System.out.println();
                     		System.out.println("enter the tripID: ");
                     		int tripID=get.nextInt();
@@ -232,7 +233,7 @@ public class main {
                     		System.out.println();
                     		break;
                     	case 7:
-                    		System.out.println("-----Get Available Drivers-----");
+                    		System.out.println("\t-----Get Available Drivers-----");
                     		List<String> availableDriver=service.getAvailableDriverNames();
                     		if (availableDriver.isEmpty()) {
                     		    System.out.println("No drivers are currently available.");
@@ -244,10 +245,10 @@ public class main {
                     		System.out.println();
                     		break;
                     	case 8:
-                    		System.out.println("Exiting Admin DashBoard...");
+                    		System.out.println("\tExiting Admin DashBoard...");
                     		break;
                     		default:
-                    			System.out.println("Enter a valid choice");
+                    			System.out.println("\tEnter a valid choice");
                     			
                     	}
                     
@@ -256,16 +257,16 @@ public class main {
                     break;
 
                 case 3:
-                    System.out.println("-----Driver Dashboard-----");
-                    service.updateJourneyStatus(get);
+                    System.out.println("\t-----Driver Dashboard-----");
+                    service.deallocateDriver(get);
                     break;
 
                 case 4:
-                    System.out.println("Exiting Transport System...");
+                    System.out.println("\tExiting Transport System...");
                     break;
 
                 default:
-                    System.out.println("Enter a valid option");
+                    System.out.println("\tEnter a valid option");
             }
 
         } while (userType != 4);
